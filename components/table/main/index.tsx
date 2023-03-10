@@ -8,7 +8,7 @@ const Index = ({ data }: any) => {
             </thead>
             <tbody>
                 {/* max 9 */}
-                {data.length > 0 ? data.map((user: any, index: number) => (<tr key={index}><th>{user.id}</th><td>{user.name}</td><td>{user.email}</td><td>{user.phone}</td></tr>)) : <tr><td colSpan={4}>No data</td></tr>}
+                {data.length > 0 ? data.map((user: any, index: number) => (<tr key={index}><th data-title="ID">{user.id}</th><td data-title="NAME">{user.name}</td><td data-title="EMAIL">{user.email}</td><td data-title="PHONE">{user.phone}</td></tr>)) : <tr><td colSpan={4}>No data</td></tr>}
             </tbody>
         </table>
     )

@@ -12,7 +12,7 @@ const sortData = ({ tableData, sortKey, reverse }: {
 }) => {
     if (!sortKey) return tableData
 
-    const sortedData = tableData.sort((a:any, b:any) => {
+    const sortedData = tableData.sort((a: any, b: any) => {
         return a[sortKey] > b[sortKey] ? 1 : -1
     })
     if (reverse) {
@@ -26,6 +26,12 @@ const Table = ({ data }: any) => {
     //sort
     const [sortKey, setSortKey] = useState('id');
     const [sortOrder, setSortOrder] = useState('ascn');
+
+    const setSortData = (sortKey: string, sortOrder: string) => {
+        setSortKey(sortKey);
+        setSortOrder(sortOrder);
+    };
+
 
     const sortedData = useCallback(
         () => sortData({ tableData: data, sortKey, reverse: sortOrder === "desc" }), [data, sortKey, sortOrder]
@@ -64,7 +70,7 @@ const Table = ({ data }: any) => {
     }, [])
     return (
         <div className={styles.tableGroup}>
-            <TableHeader searchHandler={searchHandler} />
+            <TableHeader searchHandler={searchHandler} setSortData={setSortData} />
             <TableMain data={dataFilter()} />
             <TableFooter usersPerPage={usersPerPage} totalUsers={inputSearch === "" ? users.length : searchFilter.length} paginate={paginate} />
         </div>
