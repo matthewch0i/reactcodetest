@@ -38,12 +38,11 @@ const Table = ({ data }: any) => {
     )
 
     //pagination
-    const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage, setUsersPerPage] = useState(3);
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    const currentUsers = data.slice(indexOfFirstUser, indexOfLastUser);
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     //search 
@@ -64,15 +63,11 @@ const Table = ({ data }: any) => {
             return currentUsers
         }
     }
-
-    useEffect(() => {
-        setUsers(data);
-    }, [])
     return (
         <div className={styles.tableGroup}>
             <TableHeader searchHandler={searchHandler} setSortData={setSortData} />
             <TableMain data={dataFilter()} />
-            <TableFooter usersPerPage={usersPerPage} totalUsers={inputSearch === "" ? users.length : searchFilter.length} paginate={paginate} />
+            <TableFooter usersPerPage={usersPerPage} totalUsers={inputSearch === "" ? data.length : searchFilter.length} paginate={paginate} />
         </div>
     )
 }
