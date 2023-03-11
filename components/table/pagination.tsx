@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../../styles/Home.module.css';
 const Pagination = ({ usersPerPage, totalUsers, paginate }: any) => {
     const pageNumbers = [];
-    for (let i = 1; i < Math.ceil(totalUsers / usersPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
         pageNumbers.push(i);
     }
     return (
